@@ -1,23 +1,15 @@
-# Skew Symmetric Forms over F₂
+# Overview of Fromcek PLUS
 
-A Python implementation for analyzing antisymmetric bilinear forms over the finite field F₂ (GF(2)). The code finds maximal isotropic subspaces K such that β(K, K) = 0.
+A Python implementation for analyzing antisymmetric bilinear forms over the finite field F₂. The code tries to finde maximal subspaces K such that β(K, K) = 0.
 
-## Overview
-
-This project implements the Random Step-by-Step Method (RSBSM) for finding maximal isotropic subspaces of skew-symmetric bilinear forms over the field F₂. The theoretical background and mathematical details are described in the [Latex](./Latex) folder.
+It is using the method described in Latex/Frącek_.pdf and it is not by any means optimal. But idea is to work on that! For now we use random choices to construct K step by step. 
 
 ## Installation
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/rub6y/Fromcekplus.git
 cd skewSymetricForms
-
-# Install dependencies
-pip install numpy
-
-# Optional: for development with nix
-nix-shell shell.nix
 ```
 
 ## Usage
@@ -98,34 +90,3 @@ dim: 2
 v1: ...
 ---
 ```
-
-## Project Structure
-
-```
-.
-├── MyMain.py          # Main implementation
-├── AGENTS.md          # Guidelines for AI agents
-├── shell.nix          # Nix development environment
-├── example_beta.txt   # Example input file
-├── logs/              # Output logs (input mode)
-├── log.txt            # Output log (default mode)
-└── Latex/
-    ├── main.tex       # Mathematical description
-    └── Frącek_.pdf    # Reference document
-```
-
-## Classes
-
-- `LinearSpaceF2`: Represents a linear subspace over F₂
-- `LinearMapF2`: Represents a linear map between F₂ vector spaces
-- `skewSymetricFormF2`: Represents the skew-symmetric bilinear form β
-- `f2_rank`: Computes matrix rank over F₂
-- `f2_nullspace`: Computes null space basis over F₂
-
-## License
-
-MIT
-
-## References
-
-Mathematical details and theoretical background are available in the [Latex](./Latex) folder.
