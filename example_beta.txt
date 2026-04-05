@@ -1,0 +1,11 @@
+# Example beta input file
+# Format: m n on first line, then n matrices (each m rows of m integers)
+# Blank lines and lines starting with # are ignored
+
+3 2
+0 1 1
+1 0 0
+1 0 0
+0 0 1
+0 0 1
+1 1 0
