@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+
+
+\usepackage[letterpaper,top=0.5cm,bottom=2cm,left=1.5cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+\usepackage{multicol}
+\usepackage{wrapfig}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Frącek+}
+\author{Kuba Rudzik}
+\date{April 2026}
+
+\newcommand{\Hquad}{\hspace{0.5em}} 
+\newcommand{\Hom}{\text{Hom}} 
+\newcommand{\IM}{\text{Im}} 
+\newcommand{\Ann}{\text{Ann}} 
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Ba}{\mathcal{B}^{(\alpha)}}
+\begin{document}
+
+\section{Introduction}
+
+Given surjective $\beta :W \times W \to V$ which is non-degenerate and antisymmetric, meaning: 
+
+\begin{enumerate}
+    \item $\forall x \Hquad(\forall y \Hquad  \beta(x,y) = 0 \implies x= 0)$
+
+    \item $\beta(x,y) =- \beta(y,x)$
+\end{enumerate}
+We want to determine the possible bounds for the dimension of a subspace $K < W$ such that
+\begin{equation}
+    \beta(K,K) = 0 \label{1} 
+\end{equation}
+(By this we mean $\{ \beta(k_1,k_2) : k_1,k_2 \in K\} = \{0_V\}$)
+\\
+We denote $\dim W = m$ and $\dim V = n$. For each $w \in W$ we define $\beta_w(x) = \beta(w,x)$, and $\Phi_\beta : W \to \Hom(W,V)$ is given by $\Phi_\beta(w)(x) = \beta_w(x)$.
+Let $B = \IM(\Phi_\beta)$. Observe that since $\beta$ is non-degenerate, $\Phi_\beta$ is injective, and hence $B \cong W$.
+
+\section{Simple bound for $\dim K$}
+
+\subsection{$\Hom(W,V)$ method (A)}
+Let us begin with a simple bound on $\dim K = k$. Assume that $K$ satisfies (\ref{1}). Define $K^{\bot} = \{w \in W : \forall k \Hquad \beta(w,k) = 0\}$. This is a linear subspace of $W$, and since $K$ has property (\ref{1}), it follows that $K < K^{\bot}$. This, of course, implies that 
+\begin{equation}\dim K \leq \dim K^{\bot} \label{2}\end{equation}
+Now let $\Ann(K) = \{f \in \Hom(W,V) : K < \ker f\}$. If $\Phi_\beta(w) \in \Ann(K)$, then $K < \ker \beta_w$, and so for all $k \in K$, $\beta(w,k) = 0$, which further implies that $w \in K^{\bot}$. Hence $K^\bot = \Phi_\beta^{-1}\left(\Ann(K) \cap B\right)$.
+
+The dimension of $\Hom(W,V)$ is, of course, $mn$, and a simple argument shows that $\dim\Ann(K) = (m-k)n$ (consider the matrices of $f \in \Ann(K)$ in a basis of $W$ extending a basis of $K$). Since $\Phi_\beta$ is injective, we have
+\begin{equation}\dim \left(\Ann(K) \cap B \right) \leq \min((m-k)n, m) \leq (m-k)n \label{3}\end{equation}
+Combining (\ref{2}) and (\ref{3}) we obtain 
+\[
+    k \leq (m-k)n
+\]
+\begin{equation}
+    k \leq \frac{mn}{n+1} \label{simplebound}
+\end{equation}
+
+The remaining question is whether we can find such a subspace $K$ satisfying (\ref{1}) that achieves dimension $\lfloor \frac{mn}{n+1}\rfloor$.
+
+\subsection{Antisymetric forms method (B)}
+
+
+The bound $A$ omits antisymmetry and surjectivity, but by using the fact that $\beta$ induces the antisymmetric form 
+\\$\tilde{\beta} : \Lambda^2 W \to V$, we may obtain a better bound.
+
+Take a subspace $K$ satisfying (\ref{1}). In terms of forms, this means that $\tilde{\beta}(\Lambda^2 K) = 0$, and by the rank theorem for linear maps we get
+\[\dim \ker \tilde{\beta} + \text{rank}\,\tilde{\beta} = \dim \Lambda^2 W.\]
+Substituting, we obtain
+\begin{equation}
+    \frac{k(k-1)}{2} \leq \frac{m(m-1)}{2} - n \label{formbound}
+\end{equation}
+
+\section{Constructing big subspace $K$}
+
+We can try constructing maximal subspace $K$ of property (\ref{1}).
+We look for maximal by dimension subspace $K < W$ such that $\Lambda^2K < \ker\tilde\beta$. Lets consider Standard basis of $W$ \[\text{Lim}\{e_1, \ldots, e_m\} = W\]
+And standard basis of $V$
+\[\text{Lim}\{f_1, \ldots f_n\} = V\]
+And assume that $\tilde \beta = (\beta^{(1)},\ldots, \beta^{(n)})$. Where all $\beta^{(\alpha )} : \Lambda^2W \to \mathbb{K}$. Each of thouse can be represented by some matrix $\mathcal{B^{(\alpha)}}$ that is antisymetric and has $0$ diagonal. And $\beta(x_i,x_j)$ for some $x_i,x_j \in W$ written in standard basis becomes: 
+\[\beta^{(\alpha)}(x_i\wedge x_j) = x_i^T\mathcal{B}^{(\alpha)}x_j\]
+
+By arguments in section B we know that bound on $\dim K = k$ is
+\[\frac{1}{2}(k-1)k < l\] where $l$ is $\dim \ker \tilde \beta$. which we know is equal to $\frac{1}{2}m(m-1) - n$ and by some highschool math we get
+\[k \leq \frac{1}{2}(1+\sqrt{1+8l})\]
+So we may look for biggest possible integer $k \leq \frac{1}{2}(1+\sqrt{1+8l})$ and assume we have a subspace spaned by some $x_1, \ldots x_k$ satifing for all $\alpha$
+\begin{equation}
+    A^T\mathcal{B}^{(\alpha)}A = 0 \label{constructionCondition}
+\end{equation}
+
+\subsection{Step by step method}
+
+Since $\beta$ is antisymetric any starting $x_1$ is ok. Let us assume that we were abel to find $x_1, x_2,\ldots, x_r$ satisfting (\ref{constructionCondition}). We wish to find $x_{r+1}$ such that 
+$x_{r+1}^T\B^{(\alpha)}x_i = 0$ for all $i$ and $\alpha$. So consider $\psi_{i,\alpha}(x)= x^T\Ba x_i$, then our condition is reduced to \[x \in \bigcap_{i,\alpha}\ker \psi_{i,\alpha}\]
+Each $\psi_{i,\alpha }$ is a linear map $\psi_{i,\alpha} : W \to \mathbb{K}$ so realy it just a functional in $W^{*}$ and we may consider $\Psi = (\psi_{\alpha_,i})_{\alpha,i}$ to be a map $\Psi : W \to \mathbb{K}^{rn}$. And so we get that
+\[\dim\ker \Psi + \text{rank }\Psi = \dim W =m \]
+And since $\text{rank }\Psi \leq rn$ we get that $\dim \ker \Psi  \geq m -rn$. This means that we will always be able to find space atleat $\frac{m}{n}$ dimenstional. But anything furthere is still uknown.
+\end{document}
